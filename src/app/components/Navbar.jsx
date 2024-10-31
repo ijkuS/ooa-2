@@ -4,8 +4,22 @@ import React from 'react';
 export default function Navbar() {
 	return (
 		<nav>
-			<Link href='/'>OOA</Link>
-			<menu>
+			<Link href='/' className='logo'>
+				{/* <Image
+					className='logo-image'
+					src='/ooa-logo.svg'
+					alt='ooa logo'
+					width={180}
+					height={38}
+					priority
+				/> */}
+				<img
+					className='logo-image'
+					src='/ooa-logo.svg'
+					alt='logo'
+				/>
+			</Link>
+			<menu className='main-menu'>
 				<Link className='button' href='/products/all'>
 					All Products
 				</Link>
@@ -15,7 +29,7 @@ export default function Navbar() {
 				<Link className='button' href='/products/addnew'>
 					Edit
 				</Link>
-				<button>SIGN IN</button>
+				<button className='button special'>SIGN IN</button>
 				{/* <Link className='button'>SIGN IN</Link> */}
 			</menu>
 		</nav>

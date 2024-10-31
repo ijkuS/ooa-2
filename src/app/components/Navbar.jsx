@@ -1,9 +1,23 @@
+import Link from 'next/link';
 import React from 'react';
 
 export default function Navbar() {
 	return (
-		<div>
-			<h2>OOA</h2>
-		</div>
+		<nav>
+			<Link href='/'>OOA</Link>
+			<menu>
+				<Link className='button' href='/products'>
+					All Products
+				</Link>
+				<Link className='button' href='/cart'>
+					Bag
+				</Link>
+				<Link className='button' href='/addnew'>
+					Edit
+				</Link>
+				<button>SIGN IN</button>
+				{/* <Link className='button'>SIGN IN</Link> */}
+			</menu>
+		</nav>
 	);
 }

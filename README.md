@@ -26,7 +26,7 @@ This web development project focuses on seamlessly merging offline and online sh
      -    [1. React environment with NextJS]
      -    [2. File structure setting](#2-file-structure-setting)
      -    [3. Skeleton of application (Navbar + Outlet)](#3-skeleton-of-application-navbar--outlet)
-     -    [4. Authentication with Firebase]
+     -    [4. Authentication with Firebase](#4-authentication-with-firebase)
 
      -    [The difference of Argument, Parameter, Constructor, Property](#the-difference-of-argument-parameter-constructor-property)
      -    [git Tips: Delete a file from a Git repository](#git-tips-delete-a-file-from-a-git-repository)
@@ -194,13 +194,8 @@ for admins
    - /carts -> <Cart>
 ```
 
--    Navbar + Outlet structure (with [React router DOM](https://reactrouter.com/en/main/start/overview))
-     -    routes folder -> Root.jsx
-     -    pages folder
-
-```
-
-```
+-    Navbar + Outlet structure
+     [Next.js: Route groups](https://nextjs.org/blog/layouts-rfc#multiple-data-fetching-methods-in-a-route:~:text=update%20the%20RFC.-,Route%20Groups,-The%20hierarchy%20of)
 
 ```
 -    Click products button
@@ -254,7 +249,8 @@ Without `_app.js`, the Navbar+Outlet layout does not work. Layouts are nested by
 Reference:
 [Nested layouts and routes in Next.js](https://www.youtube.com/watch?v=69-mnojSa0M)
 [Next.js: Nesting layout. ](https://nextjs.org/blog/layouts-rfc#:~:text=inside%20dashboard.-,Nesting%20Layouts,-Layouts%20are%20nested)
-
+[Next.js: Route groups](https://nextjs.org/blog/layouts-rfc#multiple-data-fetching-methods-in-a-route:~:text=update%20the%20RFC.-,Route%20Groups,-The%20hierarchy%20of)
+[Next.js: Data fetching](https://nextjs.org/blog/layouts-rfc#multiple-data-fetching-methods-in-a-route:~:text=the%20children%20prop.-,Data%20fetching,-It%20will%20be)
 Q. Will it work for login logout authentication to handle all site, not just layout?
 
 -    Initial page structure and file tree
@@ -284,7 +280,7 @@ src
 
 ```
 
-### 4. Authentification with Firebase
+### 4. Authentication with Firebase
 
 -    Install [Firebase](https://firebase.google.com/) -> Create `fbase.js`(src > api > fbase.js)
 

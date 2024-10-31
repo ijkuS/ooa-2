@@ -243,26 +243,45 @@ Details: [Basic interaction planning](#basic-interaction-planning)
 
 ### 3. Skeleton of application (Navbar + Outlet)
 
--    react-router-dom is not working Next.js
--    [Pages and Layouts](https://nextjs.org/docs/pages/building-your-application/routing/pages-and-layouts)
+-    **Create Outlet layout Without React router dom**
+
+Issue: since react-router-dom is not working Next.js,
+
+**Solution**: I used the existing features,[Pages and Layouts](https://nextjs.org/docs/pages/building-your-application/routing/pages-and-layouts), in Next.js.
+
+Without `_app.js`, the Navbar+Outlet layout does not work. Layouts are nested by default.
+
+Reference:
+[Nested layouts and routes in Next.js](https://www.youtube.com/watch?v=69-mnojSa0M)
+[Next.js: Nesting layout. ](https://nextjs.org/blog/layouts-rfc#:~:text=inside%20dashboard.-,Nesting%20Layouts,-Layouts%20are%20nested)
+
+Q. Will it work for login logout authentication to handle all site, not just layout?
+
 -    Initial page structure and file tree
 
 ```
-    src
-    ┣ components
-    ┃ ┗ Navbar.tsx
-    ┣ pages
-    ┃ ┣ AddNewPage.tsx
-    ┃ ┣ AllProducts.tsx
-    ┃ ┣ Cart.tsx
-    ┃ ┣ NotFound.tsx
-    ┃ ┗ ProductDetail.tsx
-    ┣ routes
-    ┃ ┗ Root.tsx
-    ┣ styles
-    ┃ ┗ style.css
-    ┣ App.tsx
-    ┗ index.tsx
+src
+ ┣ app
+ ┃ ┣ components
+ ┃ ┃ ┗ Navbar.jsx
+ ┃ ┣ dashboard
+ ┃ ┃ ┗ layout.js
+ ┃ ┣ fonts
+ ┃ ┃ ┣ GeistMonoVF.woff
+ ┃ ┃ ┗ GeistVF.woff
+ ┃ ┣ favicon.ico
+ ┃ ┣ globals.css
+ ┃ ┣ layout.js
+ ┃ ┣ page copy.js
+ ┃ ┗ page.js
+ ┗ pages
+ ┃ ┣ _app.js
+ ┃ ┣ add-new-page.jsx
+ ┃ ┣ all-products.jsx
+ ┃ ┣ cart.jsx
+ ┃ ┣ notfound.jsx
+ ┃ ┗ product-detail.jsx
+
 ```
 
 ### 4. Authentification with Firebase

@@ -282,16 +282,16 @@ src
 
 ### 4. Authentication with Firebase
 
--    Install [Firebase](https://firebase.google.com/) -> Create `fbase.js`(src > api > fbase.js)
+-    Install [Firebase](https://firebase.google.com/) -> Create `fbase.js`(src/app/api/fbase.js)
 
      -    **Important**: Refrain from using the name "firebase.js." to avoid potential conflicts with other files
 
 -    Build firebase authentication following the [guide](https://firebase.google.com/docs/build?authuser=0&%3Bhl=ko&hl=ko&_gl=1*1idhrwr*_up*MQ..*_ga*NTQwNTQwNTgzLjE3Mjk4OTg5NDE.*_ga_CW55HF8NVT*MTcyOTkwMTYxMS4yLjEuMTcyOTkwMjgwOS4xNC4wLjA.)
 
--    `fbase.ts`: Protect important keys putting in `.env.local` (apiKey, authDomain, databaseURL, projectId, appId)
+-    `fbase.js`: Protect important keys putting in `.env` (apiKey, authDomain, databaseURL, projectId, appId)
 
      -    function login / logout
-     -    Manage Users in Firebase
+     -    [Manage Users in Firebase](https://firebase.google.com/docs/auth/web/manage-users?hl=en&authuser=0&_gl=1*1t9v0u8*_up*MQ..*_ga*MTkwMjg3OTI4NS4xNzMwMzQ4NDA3*_ga_CW55HF8NVT*MTczMDM0ODQwNy4xLjAuMTczMDM0ODQwNy4wLjAuMA..#get_the_currently_signed-in_user)
      -    funtion for [Authentication state](https://firebase.google.com/docs/auth/web/start?hl=ko&authuser=0&_gl=1*11jfqco*_up*MQ..*_ga*NTQwNTQwNTgzLjE3Mjk4OTg5NDE.*_ga_CW55HF8NVT*MTcyOTkwMTYxMS4yLjEuMTcyOTkwMjk0Mi4wLjAuMA..)
 
 -    [firebase google login build document](https://firebase.google.com/docs/auth/web/google-signin?hl=ko&authuser=0&_gl=1*1bzde14*_up*MQ..*_ga*NTQwNTQwNTgzLjE3Mjk4OTg5NDE.*_ga_CW55HF8NVT*MTcyOTkwMTYxMS4yLjEuMTcyOTkwMjk0Mi4wLjAuMA..)

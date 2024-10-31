@@ -6,13 +6,13 @@ export default function Navbar() {
 		<nav>
 			<Link href='/'>OOA</Link>
 			<menu>
-				<Link className='button' href='/products'>
+				<Link className='button' href='/products/all'>
 					All Products
 				</Link>
 				<Link className='button' href='/cart'>
 					Bag
 				</Link>
-				<Link className='button' href='/addnew'>
+				<Link className='button' href='/products/addnew'>
 					Edit
 				</Link>
 				<button>SIGN IN</button>

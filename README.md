@@ -190,7 +190,7 @@ for admins
    - /   -> <home>
    - /products   -> <AllProducts>
    - /products/addnew -> <AddProducts> for admins
-   - /products/:id -> <ProductDetail>
+   - /products/[productId] -> <ProductDetail>
    - /carts -> <Cart>
 ```
 

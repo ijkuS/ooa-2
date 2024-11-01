@@ -14,6 +14,9 @@
 :root {
 	--color-accent: #ef5350;
 	--color-neutral-grey-200: #eeeeee;
+	--color-neutral-grey-400: #bdbdbd;
+	--color-neutral-grey-600: #757575;
+	--color-neutral-grey-800: #424242;
 	--color-neutral-grey-900: #212121;
 
 	--color-ooa-monotone-1: #d6d8de;
@@ -90,6 +93,8 @@ nav {
 .main-menu {
 	display: flex;
 	flex-direction: row;
+	align-items: center;
+	gap: 1rem;
 }
 
 .main-menu .button {
@@ -98,7 +103,6 @@ nav {
 	background-color: transparent;
 	border: none;
 	outline: none;
-	padding: 0 1rem;
 
 	font-size: 0.9rem;
 	text-decoration: none;
@@ -107,10 +111,24 @@ nav {
 	color: var(--color-ooa-monotone-2);
 	transition: 0.1s ease-in-out;
 }
-.main-menu .button.special {
-	/* text-align: center;
+/* .main-menu .button.special {
+	text-align: center;
 	color: var(--color-neutral-grey-200);
-	background-color: var(--color-ooa-monotone-3); */
+	background-color: var(--color-ooa-monotone-3);
+} */
+/* -- Navbar - User --------------------------------------------------- */
+.user-info {
+	display: flex;
+	align-items: center;
+	gap: 1rem;
 }
-
+.user-photo {
+	width: 30px;
+	height: fit-content;
+	border-radius: 100%;
+}
+.user-name {
+	font-size: 0.7rem;
+	color: var(--color-neutral-grey-600);
+}
 /* -- Outlet --------------------------------------------------- */

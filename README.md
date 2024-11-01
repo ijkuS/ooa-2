@@ -27,6 +27,7 @@ This web development project focuses on seamlessly merging offline and online sh
      -    [2. File structure setting](#2-file-structure-setting)
      -    [3. Skeleton of application (Navbar + Outlet)](#3-skeleton-of-application-navbar--outlet)
      -    [4. Authentication with Firebase](#4-authentication-with-firebase)
+     -    [5. Login & logout functions with UI (Navbar button)](#5-login--logout-functions-with-ui-navbar-button)
 
      -    [The difference of Argument, Parameter, Constructor, Property](#the-difference-of-argument-parameter-constructor-property)
      -    [git Tips: Delete a file from a Git repository](#git-tips-delete-a-file-from-a-git-repository)
@@ -45,7 +46,7 @@ This web development project focuses on seamlessly merging offline and online sh
 
 ### Goal
 
--    User types: (A) Admins / (L) Logged-in user / (V) Visitors
+User types: (A) Admins / (M) Memebers(Logged-in user) / (N) Non-members (users not logged in)
 
 Users should be able to:
 
@@ -53,15 +54,15 @@ Users should be able to:
 
 General
 
--    [ ] See all products on the main homepage (A, L, V)
--    [ ] See all product details (A, L, V)
-     -    [ ] Add to bag button (A, L)
+-    [ ] See all products on the main homepage (A, M, N)
+-    [ ] See all product details (A, M, N)
+     -    [ ] Add to bag button (A, M)
 -    [ ] LocalStorage
 
 SignUp & Bag(cart)
 
--    [ ] Login/Logout/SignUp (A, L, V)
--    [ ] Bag (A, L)
+-    [ ] Login/Logout/SignUp (A, M, N)
+-    [ ] Bag (A, M)
      -    [ ] Add products in a cart
 
 Add & Edit(A)
@@ -305,6 +306,30 @@ src
 
 ### 5. Login & logout functions with UI (Navbar button)
 
+### 6. Authentication - Admins (firebase realtime database)
+
+-    User types: (A) Admins / (M) Memebers(Logged-in user) / (N) Non-members (users not logged in)
+-    Create different screen layouts for three types of users.
+
+-    Build Firebase realtime database
+
+     -    Distinguish admins from logged-in users by storing their UID in the Firebase Realtime Database.
+
+          -    Non-members: Only show "All Products" and "SIGN IN" buttons.
+
+               -    Restrict access to other menu routes even if entered directly in the address bar, redirecting them to Home.
+               -    Prevent access to routes after logging out by using the back button, redirecting them to Home.
+
+          -    Members: Show "All Products," "Carts," and "SIGN OUT" buttons.
+
+               -    Restrict access to other menu routes even if entered directly in the address bar, redirecting them to Home.
+               -    Prevent access to routes after logging out by using the back button, redirecting them to Home.
+
+          -    **Admin users**: Show all four buttons — "All Products," "Carts," "SIGN OUT," and "Add New."
+
+-    function adminUser(user)
+     To check if the logged-in user is admin
+
 ### The difference of Argument, Parameter, Constructor, Property
 
 인자(Argument), 파라미터(Parameter, 매개변수), 생성자(Constructor), 프로퍼티(Property)
@@ -351,11 +376,12 @@ Due the type checking of TypeScript, I had to change the firebase API into TS, n
 
 **Design References**
 
+-    [Google material3 color palette](https://m3.material.io/styles/color/static/baseline)
+-    [Google material component git](https://github.com/material-components/material-components-android/blob/master/docs/theming/Color.md)
 -    [Google design guidelines for developers](https://developers.google.com/assistant/interactivecanvas/design)
 -    [Google Material 3](https://m3.material.io/)
 -    [CSS Box shadow examples](https://getcssscan.com/css-box-shadow-examples)
-
--    [Google color palette](https://partnermarketinghub.withgoogle.com/brands/google-news/visual-identity/color-palette/)
+-    [Google color palette](https://partnermarketinghub.withgoogle.com/brands/google-news/visual-identity/color-palette/) -[Google Design for Driving](https://developers.google.com/cars/design/automotive-os/design-system/color)
 -    [TailwindCSS color palette](https://tailwindcss.com/docs/customizing-colors)
 -    [material ui](https://materialui.co/colors)
 

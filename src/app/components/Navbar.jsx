@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 import { OnUserStateChange, googleLogin, googleLogout } from '../api/fbase';
+import User from './User';
 
 export default function Navbar() {
 	//set user
@@ -16,7 +17,6 @@ export default function Navbar() {
 	//useEffect(()=>{},[]) : basic structure of useEffect
 	useEffect(() => {
 		OnUserStateChange((user) => {
-			console.log(user);
 			setUser(user);
 		});
 	}, []); // call the callback only once when the page is firstly mounted
@@ -40,6 +40,7 @@ export default function Navbar() {
 				<Link className='button' href='/products/addnew'>
 					Edit
 				</Link>
+
 				{!user && (
 					<button
 						onClick={handleLogin}
@@ -54,6 +55,7 @@ export default function Navbar() {
 						Logout
 					</button>
 				)}
+				{user && <User user={user} />}
 			</menu>
 		</nav>
 	);

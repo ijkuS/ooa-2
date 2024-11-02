@@ -1,4 +1,4 @@
-import Navbar from '@/app/components/Navbar';
+import Navbar from '@/app/components/Header';
 import React from 'react';
 import '@/app/globals.css';
 

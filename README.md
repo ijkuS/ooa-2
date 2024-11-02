@@ -330,6 +330,25 @@ src
 -    function adminUser(user)
      To check if the logged-in user is admin
 
+### 7. Authorization with useContext of React
+
+src/app/routes/`ProtectedRoute.jsx`
+
+-    Check if the user is member or non-member
+-    Check if the user is admin
+-    if (requireAdminId) -> logged in && isAdmin
+-    condition not-okay -> Return to the parent page
+-    condition okay -> Show the children
+
+src/app/components/`AuthContext.jsx`
+When a logic is used not just within a single component but across the entire application, it’s best to use context. Since login/logout information is needed globally in the Shoppy application, a context umbrella should be created.
+
+Currently, the login/logout logic is in NavBar.jsx, so we’ll create a new AuthContext.jsx component and move the logic there.
+
+Ref: [Next.js: Authorization ](https://nextjs.org/docs/pages/building-your-application/authentication#authorization)
+
+### The diffrence between Authentication and Authorization
+
 ### The difference of Argument, Parameter, Constructor, Property
 
 인자(Argument), 파라미터(Parameter, 매개변수), 생성자(Constructor), 프로퍼티(Property)

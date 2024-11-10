@@ -1,6 +1,6 @@
+import Navbar from '@/app/components/Header';
 import React from 'react';
 import '@/app/globals.css';
-import Navbar from '@/components/Header';
 
 export default function MyApp({ Component, pageProps }) {
 	return (

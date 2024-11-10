@@ -28,6 +28,7 @@ This web development project focuses on seamlessly merging offline and online sh
      -    [3. Skeleton of application (Navbar + Outlet)](#3-skeleton-of-application-navbar--outlet)
      -    [4. Authentication with Firebase](#4-authentication-with-firebase)
      -    [5. Login & logout functions with UI (Navbar button)](#5-login--logout-functions-with-ui-navbar-button)
+     -    [6. Authentication, Authorization, Protected Routes]
 
      -    [The difference of Argument, Parameter, Constructor, Property](#the-difference-of-argument-parameter-constructor-property)
      -    [git Tips: Delete a file from a Git repository](#git-tips-delete-a-file-from-a-git-repository)
@@ -306,7 +307,9 @@ src
 
 ### 5. Login & logout functions with UI (Navbar button)
 
-### 6. Authentication - Admins (firebase realtime database)
+### 6. Authentication, Authorization, Protected Routes
+
+I created a separated repository to practise [implementing User Authentication and Authorization with Next.js and Firebase](https://github.com/ijkuS/next-react-auth-practice-4)
 
 -    User types: (A) Admins / (M) Memebers(Logged-in user) / (N) Non-members (users not logged in)
 -    Create different screen layouts for three types of users.
@@ -329,23 +332,6 @@ src
 
 -    function adminUser(user)
      To check if the logged-in user is admin
-
-### 7. Authorization with useContext of React
-
-src/app/routes/`ProtectedRoute.jsx`
-
--    Check if the user is member or non-member
--    Check if the user is admin
--    if (requireAdminId) -> logged in && isAdmin
--    condition not-okay -> Return to the parent page
--    condition okay -> Show the children
-
-src/app/components/`AuthContext.jsx`
-When a logic is used not just within a single component but across the entire application, it’s best to use context. Since login/logout information is needed globally in the Shoppy application, a context umbrella should be created.
-
-Currently, the login/logout logic is in NavBar.jsx, so we’ll create a new AuthContext.jsx component and move the logic there.
-
-Ref: [Next.js: Authorization ](https://nextjs.org/docs/pages/building-your-application/authentication#authorization)
 
 ### The diffrence between Authentication and Authorization
 

@@ -1,18 +1,15 @@
 import { cookies } from 'next/headers';
-import Navbar from './components/Header';
 import './globals.css';
-import { SESSION_COOKIE_NAME } from '../../constants';
+import Navbar from '@/components/Header';
+import { SESSION_COOKIE_NAME } from '@/middleware_constants';
 
-export default function RootLayout({ children }) {
-	const sessionCookie = async () => {
-		cookies().get(SESSION_COOKIE_NAME);
-	};
-	const session = sessionCookie ? sessionCookie.value : null;
+export default async function RootLayout({ children }) {
+	const session = (await cookies()).get(SESSION_COOKIE_NAME)?.value;
 	return (
 		<html>
 			<body>
 				<main className='main-wrapper'>
-					<Navbar session={session} />
+					<Navbar initialUser={currentUser?.toJSON()} />
 					{children}
 				</main>
 			</body>

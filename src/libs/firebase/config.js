@@ -1,4 +1,3 @@
-import { getApps } from 'firebase/app';
 import { initializeApp } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
 import { getDatabase } from 'firebase/database';
@@ -14,13 +13,6 @@ export const firebaseConfig = {
 	databaseURL: process.env.NEXT_PUBLIC_FIREBASE_DATABASE_URL,
 };
 
-// Initialize Firebase
-// const firebaseApp = initializeApp(firebaseConfig);
-const firebaseApp =
-	getApps().length === 0 ? initializeApp(firebaseConfig) : getApps()[0];
-
-typeof window !== undefined;
+const firebaseApp = initializeApp(firebaseConfig);
 export const firebaseAuth = getAuth(firebaseApp);
 export const firebaseDatabase = getDatabase(firebaseApp);
-// //getAnalytics(app);
-// export const googleProvider = new GoogleAuthProvider();

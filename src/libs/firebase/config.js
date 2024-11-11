@@ -1,4 +1,4 @@
-import { initializeApp } from 'firebase/app';
+import { getApps, initializeApp } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
 import { getDatabase } from 'firebase/database';
 
@@ -13,6 +13,7 @@ export const firebaseConfig = {
 	databaseURL: process.env.NEXT_PUBLIC_FIREBASE_DATABASE_URL,
 };
 
-const firebaseApp = initializeApp(firebaseConfig);
+const firebaseApp =
+	getApps().length === 0 ? initializeApp(firebaseConfig) : getApps()[0];
 export const firebaseAuth = getAuth(firebaseApp);
-export const firebaseDatabase = getDatabase(firebaseApp);
+export const firebaseRTDatabase = getDatabase(firebaseApp);

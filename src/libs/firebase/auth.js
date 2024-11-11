@@ -2,12 +2,11 @@ import {
 	GoogleAuthProvider,
 	onAuthStateChanged,
 	signInWithPopup,
-	signOut,
 } from 'firebase/auth';
 import { get, ref } from 'firebase/database';
-import { firebaseAuth, firebaseDatabase } from './config';
+import { firebaseAuth, firebaseRTDatabase } from './config';
 
-export async function googleLogin() {
+export async function login() {
 	const provider = new GoogleAuthProvider();
 
 	try {
@@ -15,32 +14,29 @@ export async function googleLogin() {
 		if (!result || !result.user) {
 			throw new Error('Google sign in failed');
 		}
-		return result.user.uid;
+		return result.user;
 	} catch (error) {
 		console.error('Error signing in with Google', error);
 	}
 }
-export async function googleLogout() {
-	return signOut(firebaseAuth)
-		.then(() => null)
-		.catch((error) => {
-			console.log(error);
-			return null; // Ensures consistent return
-		});
+export async function logout() {
+	try {
+		await firebaseAuth.signOut();
+	} catch (error) {
+		console.error('Error signing out with Google', error);
+	}
 }
 export function onUserStateChange(callback) {
-	onAuthStateChanged(firebaseAuth, async (user) => {
-		if (user) {
-			await adminUser(user);
-			const updatedUser = { ...user, isAdmin };
-			callback(updatedUser);
-		} else {
-			return null;
-		}
+	const unsubscribe = onAuthStateChanged(firebaseAuth, async (user) => {
+		const updatedUser = user ? await adminUser(user) : null;
+		callback(updatedUser);
+		console.log(updatedUser, 'this is updatedUser');
 	});
+	console.log(unsubscribe, 'this is unsubscribe');
+	return unsubscribe;
 }
 export async function adminUser(user) {
-	const dbRef = ref(firebaseDatabase, 'admins');
+	const dbRef = ref(firebaseRTDatabase, 'admins');
 	try {
 		const snapshot = await get(dbRef);
 		if (snapshot.exists()) {
@@ -48,88 +44,9 @@ export async function adminUser(user) {
 			const isAdmin = admins.includes(user.uid);
 			return { ...user, isAdmin };
 		}
-		return { ...user, isAdmin: false }; // Explicitly set `isAdmin: false` if no admins found
+		return user;
 	} catch (error) {
 		console.log(error);
-		return { ...user, isAdmin: false }; // Return `isAdmin: false` on error
+		return null;
 	}
 }
-async function fetchWithFirebaseHeaders(request) {
-	// const app = initializeApp(firebaseConfig);
-	// const auth = getAuth(app);
-	const headers = new Headers(request.headers);
-	const authIdToken = await getAuthIdToken(firebaseAuth);
-	// headers.append('Firebase-Instance-ID-Token', authIdToken);
-	if (authIdToken) {
-		headers.append('Authorization', `Bearer ${authIdToken}`);
-	}
-	const newRequest = new Request(request, { headers });
-	return await fetch(newRequest);
-}
-async function getAuthIdToken(auth) {
-	await auth.authStateReady();
-	if (!auth.currentUser) return;
-	return await getIdToken(auth.currentUser);
-
-	// idToken comes from the client app
-	// try {
-	// 	const idToken = await user.getIdToken();
-	// 	// console.log(idToken);
-	// 	return idToken;
-	// } catch (error) {
-	// 	console.log(error);
-	// 	return null;
-	// }
-}
-
-// export function OnUserStateChange(callback) {
-// 	onAuthStateChanged(firebaseAuth, async (user) => {
-// 		if (user) {
-// 			//fetch admin status and token in parallel
-// 			const [isAdmin, token] = await Promise.all([
-// 				adminUser(user),
-// 				memberUser(user),
-// 			]);
-// 			const updatedUser = { ...user, isAdmin, token };
-// 			callback(updatedUser);
-// 		} else {
-// 			callback(null);
-// 		}
-// 	});
-// }
-
-// export async function adminUser(user) {
-// 	const dbRef = ref(firebaseDatabase, 'admins');
-// 	try {
-// 		const snapshot = await get(dbRef);
-// 		if (snapshot.exists()) {
-// 			const admins = snapshot.val();
-// 			const isAdmin = admins.includes(user.uid);
-// 			return { ...user, isAdmin };
-// 		}
-// 		return { ...user, isAdmin: false }; // Explicitly set `isAdmin: false` if no admins found
-// 	} catch (error) {
-// 		console.log(error);
-// 		return { ...user, isAdmin: false }; // Return `isAdmin: false` on error
-// 	}
-// }
-// export async function bringToken(user) {
-// 	// idToken comes from the client app
-// 	try {
-// 		const idToken = await user.getIdToken();
-// 		// console.log(idToken);
-// 		return idToken;
-// 	} catch (error) {
-// 		console.log(error);
-// 		return null;
-// 	}
-// }
-// export async function memberUser(user) {
-// 	const idToken = await user.getIdToken();
-// 	if (idToken) {
-// 		console.log('you are our member');
-// 		return true;
-// 	} else {
-// 		return false;
-// 	}
-// }

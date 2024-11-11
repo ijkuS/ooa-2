@@ -214,13 +214,13 @@ for admins
 -    Mobile-first workflow
 -    [React](https://react.dev/)
 -    [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+-    [Next.js](https://nextjs.org/)
 
 -    [Tanstack Router](https://tanstack.com/router/latest)
--    [React Router DOM](https://www.npmjs.com/package/react-router-dom)
 -    [React Router](https://reactrouter.com/en/main)
 -    [Firebase](https://firebase.google.com/)
-     -    authentification
-     -    database
+     -    Authentification
+     -    Realtime database
 
 ## Challenges and Lessons
 
@@ -309,7 +309,12 @@ src
 
 ### 6. Authentication, Authorization, Protected Routes
 
-I created a separated repository to practise [implementing User Authentication and Authorization with Next.js and Firebase](https://github.com/ijkuS/next-react-auth-practice-4)
+I created a separated repository to understand about the different setting for authentication, authorization, and protected routes in Next.js from React without React-router-dom library.
+[Implementing User Authentication and Authorization with Next.js and Firebase](https://github.com/ijkuS/next-react-auth-practice-4)
+
+-    Authentication with firebase authentication and realtime database
+-    Authorization for user types (Admins, Members, Visitors)
+-    Protected routes with middleware
 
 -    User types: (A) Admins / (M) Memebers(Logged-in user) / (N) Non-members (users not logged in)
 -    Create different screen layouts for three types of users.
@@ -328,7 +333,7 @@ I created a separated repository to practise [implementing User Authentication a
                -    Restrict access to other menu routes even if entered directly in the address bar, redirecting them to Home.
                -    Prevent access to routes after logging out by using the back button, redirecting them to Home.
 
-          -    **Admin users**: Show all four buttons — "All Products," "Carts," "SIGN OUT," and "Add New."
+          -    **Admin users**: Show all four buttons — "All Products," "SIGN OUT," and "Add New."
 
 -    function adminUser(user)
      To check if the logged-in user is admin

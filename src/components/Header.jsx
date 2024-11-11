@@ -3,41 +3,10 @@
 import Link from 'next/link';
 import User from './User';
 
-import { googleLogin, googleLogout } from '@/libs/firebase/auth';
+import useUserSession from '@/hooks/use-user-session';
 
-export default function Navbar() {
-	// const userSessionId = useUserSession(session);
-
-	const handleLogin = () => {
-		googleLogin();
-	};
-	const handleLogout = () => {
-		googleLogout();
-	};
-	if (!userSessionId) {
-		return (
-			<nav>
-				<Link href='/' className='logo'>
-					<img
-						className='logo-image'
-						src='/ooa-logo.svg'
-						alt='logo'
-					/>
-				</Link>
-				<menu className='main-menu'>
-					<Link className='button' href='/products/all'>
-						All Products
-					</Link>
-
-					<button
-						onClick={handleLogin}
-						className='button special'>
-						Login
-					</button>
-				</menu>
-			</nav>
-		);
-	}
+export default function Navbar({ session }) {
+	const { user, role, login, logout } = useUserSession(session);
 
 	return (
 		<nav>
@@ -53,21 +22,28 @@ export default function Navbar() {
 					All Products
 				</Link>
 
-				<Link className='button' href='/cart'>
-					Bag
-				</Link>
+				{role === 'member' && (
+					<Link className='button' href='/cart'>
+						Bag
+					</Link>
+				)}
 
-				{userSessionId?.isAdmin && (
+				{role === 'admin' && (
 					<Link className='button' href='/admin/addnew'>
 						Edit
 					</Link>
 				)}
 
-				<button onClick={handleLogout} className='button special'>
-					Logout
-				</button>
-
-				<User user={userSessionId} />
+				{user ? (
+					<button onClick={logout} className='button special'>
+						Logout
+					</button>
+				) : (
+					<button onClick={login} className='button special'>
+						Login
+					</button>
+				)}
+				{user && <User user={user} />}
 			</menu>
 		</nav>
 	);

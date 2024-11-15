@@ -20,14 +20,14 @@ export default function useUserSession() {
 			const loggedInUser = await firebaseLogin();
 			const userRole = loggedInUser.isAdmin ? 'admin' : 'member'; // Determine role based on isAdmin property
 
-			setUser(loggedInUser);
-			setRole(userRole);
 			// console.log('Login successful', {
 			// 	user: loggedInUser,
 			// 	uid: loggedInUser.uid,
 			// 	role: userRole,
 			// });
 			await createSession(loggedInUser, loggedInUser.uid, userRole);
+			setUser(loggedInUser);
+			setRole(userRole);
 		} catch (error) {
 			console.error('Error during login:', error);
 		}

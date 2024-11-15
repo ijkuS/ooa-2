@@ -51,7 +51,7 @@ export default function middleware(request) {
 		const sessionData = JSON.parse(decodeURIComponent(sessionCookie));
 		// console.log('-------------------------------------');
 		// console.log('🍪🍪 2nd sessionCookie:', sessionCookie);
-		console.log('🍎 1st Session data:', sessionData); // user
+		// console.log('🍎 1st Session data:', sessionData); // user
 		// console.log('🍎 sessionData.uid: ', sessionData.uid);
 		// console.log('⭐️⭐️ SessionData.role is...', sessionData.role); // 현재 uid정보가 나옴
 

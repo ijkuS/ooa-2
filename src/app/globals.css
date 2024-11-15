@@ -13,6 +13,7 @@
 
 :root {
 	--color-accent: #ef5350;
+	--color-white: white;
 	--color-neutral-grey-200: #eeeeee;
 	--color-neutral-grey-400: #bdbdbd;
 	--color-neutral-grey-600: #757575;
@@ -131,6 +132,11 @@ nav {
 }
 /* -- Outlet --------------------------------------------------- */
 /* --------------- admin/addnew */
+.page-title {
+	font-size: 1.5rem;
+	padding: 1rem 0;
+	text-transform: uppercase;
+}
 .admin-dashboard__container .button.special {
 	text-align: center;
 	color: var(--color-neutral-grey-200);

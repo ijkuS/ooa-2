@@ -70,8 +70,8 @@ export default function AddNewPage() {
 				...prevProduct,
 				imageUrls: [...(prevProduct.imageUrls || []), ...urls],
 			}));
-			console.log(urls);
-			console.log(product);
+			// console.log(urls);
+			// console.log(product);
 			setSuccess(true);
 		} catch (error) {
 			console.error('Error on handleSubmit', error);
@@ -90,96 +90,103 @@ export default function AddNewPage() {
 			setTimeout(() => setSuccess(null), 4000);
 		}
 	};
-	const handleClick = (e) => {
-		e.preventDefault();
-		handleSubmit(e);
-	};
+	// const handleClick = (e) => {
+	// 	e.preventDefault();
+	// 	handleSubmit(e);
+	// };
 	return (
 		<section className='add-new-products__page-container'>
-			<h2>Admin Addnew page</h2>
-			<div className='preview-image__holder'>
-				{previewUrls &&
-					previewUrls.map((url, index) => (
-						<img
-							src={url}
-							key={index}
-							alt={`preview-${index}`}
-						/>
-					))}
-			</div>
+			<h2 className='page-title'>Admin Addnew page</h2>
 
-			<form className='form__holder' onSubmit={handleSubmit}>
-				<label htmlFor='file-input'>Add files</label>
-				<input
-					type='file'
-					accept='image/*'
-					name='files'
-					id='file-input'
-					multiple
-					required
-					value={product.files}
-					onChange={handleChange}
-				/>
-				<label htmlFor='product-title-input'>Product Title</label>
-				<input
-					type='text'
-					name='title'
-					id='product-title-input'
-					placeholder='CREW-NECK MERINO WOOL TOP'
-					required
-					value={product.title}
-					onChange={handleChange}
-				/>
-				<label htmlFor='category-input'>Category</label>
-				<input
-					type='text'
-					name='category'
-					id='category-input'
-					placeholder='Women'
-					required
-					value={product.category}
-					onChange={handleChange}
-				/>
-				<label htmlFor='price-input'>Price (USD)</label>
-				<input
-					type='number'
-					name='price'
-					id='price-input'
-					placeholder='155'
-					required
-					value={product.price}
-					onChange={handleChange}
-				/>
-				<label htmlFor='description-input'>Description</label>
-				<input
-					type='text'
-					name='description'
-					id='description-input'
-					placeholder='Write description about the product'
-					required
-					value={product.description}
-					onChange={handleChange}
-				/>
-				<label htmlFor='option-input'>Size Options</label>
-				<input
-					type='text'
-					name='options'
-					id='size-option-input'
-					placeholder='Options(separated by commas)'
-					required
-					value={product.options}
-					onChange={handleChange}
-				/>
-				<button
-					className='button upload'
-					disabled={isUploading}
-					onClick={handleClick}>
-					{isUploading ? 'Uploading...' : 'Click to Upload'}
-				</button>
-				{success && (
-					<p className='alert success'>Upload Successful!</p>
-				)}
-			</form>
+			<div className='sub-wrapper'>
+				<div className='preview-image__holder'>
+					{previewUrls &&
+						previewUrls.map((url, index) => (
+							<img
+								src={url}
+								key={index}
+								alt={`preview-${index}`}
+							/>
+						))}
+				</div>
+
+				<form className='form__holder' onSubmit={handleSubmit}>
+					<label htmlFor='file-input'>Add files</label>
+					<input
+						type='file'
+						accept='image/*'
+						name='files'
+						id='file-input'
+						multiple
+						required
+						value={product.files}
+						onChange={handleChange}
+					/>
+					<label htmlFor='product-title-input'>
+						Product Title
+					</label>
+					<input
+						type='text'
+						name='title'
+						id='product-title-input'
+						placeholder='CREW-NECK MERINO WOOL TOP'
+						required
+						value={product.title}
+						onChange={handleChange}
+					/>
+					<label htmlFor='category-input'>Category</label>
+					<input
+						type='text'
+						name='category'
+						id='category-input'
+						placeholder='Women'
+						required
+						value={product.category}
+						onChange={handleChange}
+					/>
+					<label htmlFor='price-input'>Price (USD)</label>
+					<input
+						type='number'
+						name='price'
+						id='price-input'
+						placeholder='155'
+						required
+						value={product.price}
+						onChange={handleChange}
+					/>
+					<label htmlFor='description-input'>Description</label>
+					<input
+						type='text'
+						name='description'
+						id='description-input'
+						placeholder='Write description about the product'
+						required
+						value={product.description}
+						onChange={handleChange}
+					/>
+					<label htmlFor='option-input'>Size Options</label>
+					<input
+						type='text'
+						name='options'
+						id='size-option-input'
+						placeholder='Options(separated by commas)'
+						required
+						value={product.options}
+						onChange={handleChange}
+					/>
+					<button
+						className='button upload'
+						type='submit'
+						disabled={isUploading}>
+						{isUploading ? 'Uploading...' : 'Click to Upload'}
+					</button>
+					{success && (
+						<p className='alert success'>
+							Upload Successful!
+						</p>
+					)}
+				</form>
+			</div>
 		</section>
 	);
 }

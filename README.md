@@ -28,7 +28,7 @@ This web development project focuses on seamlessly merging offline and online sh
      -    [3. Skeleton of application (Navbar + Outlet)](#3-skeleton-of-application-navbar--outlet)
      -    [4. Authentication with Firebase](#4-authentication-with-firebase)
      -    [5. Login & logout functions with UI (Navbar button)](#5-login--logout-functions-with-ui-navbar-button)
-     -    [6. Authentication, Authorization, Protected Routes]
+     -    [6. Authentication, Authorization, Protected Routes](#6-authentication-authorization-protected-routes)
 
      -    [The difference of Argument, Parameter, Constructor, Property](#the-difference-of-argument-parameter-constructor-property)
      -    [git Tips: Delete a file from a Git repository](#git-tips-delete-a-file-from-a-git-repository)
@@ -216,11 +216,14 @@ for admins
 -    [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 -    [Next.js](https://nextjs.org/)
 
--    [Tanstack Router](https://tanstack.com/router/latest)
+     -    middleware (Authorization, Protected Routes)
+
+-    [TanStack Query v5](https://tanstack.com/query/latest)
 -    [React Router](https://reactrouter.com/en/main)
 -    [Firebase](https://firebase.google.com/)
      -    Authentification
      -    Realtime database
+     -    Storage
 
 ## Challenges and Lessons
 
@@ -264,9 +267,6 @@ src
  ┃ ┃ ┗ Navbar.jsx
  ┃ ┣ dashboard
  ┃ ┃ ┗ layout.js
- ┃ ┣ fonts
- ┃ ┃ ┣ GeistMonoVF.woff
- ┃ ┃ ┗ GeistVF.woff
  ┃ ┣ favicon.ico
  ┃ ┣ globals.css
  ┃ ┣ layout.js
@@ -349,7 +349,13 @@ I created a separated repository to understand about the different setting for a
      -    Using e.target – to individually retrieve name, value, and files.
      -    Conditionally Executing – if name is file, execute setFile() and return; otherwise, execute setProduct().
 
+### 8. TanStack Query v5
+
+[Ref: Next.js fetch and TanStack Query](https://blog.toktokhan.dev/how-to-use-effectivelynext-js-fetchtanstack-query-333c28168e92)
+
 ### Random ID generator
+
+Since UUID library often conflicts Next.js, I simply created an equation to make a unique id below.
 
 ```javascript
 this.id = `memo-${Date.now()}-${Math.floor(Math.random() * 100)}`;

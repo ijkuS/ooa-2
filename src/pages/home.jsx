@@ -1,9 +1,10 @@
 import React from 'react';
 
-export default function homeForSession() {
+export default function landingHomePage() {
 	return (
-		<div>
-			<h2>this is home for session</h2>
-		</div>
+		<section className='all-products__page-container'>
+			<h2 className='page-title'>Landing Page</h2>
+			<div className='sub-wrapper'></div>
+		</section>
 	);
 }

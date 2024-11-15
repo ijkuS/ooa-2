@@ -1,4 +1,4 @@
-import { ref as databaseRef, set } from 'firebase/database';
+import { ref as databaseRef, get, set } from 'firebase/database';
 
 import { firebaseRTDatabase, firebaseStorage } from './config';
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
@@ -39,4 +39,16 @@ export async function addNewProduct(product, imageUrls) {
 	}
 }
 
-export async function getProducts() {}
+export async function getProducts() {
+	const dbRef = databaseRef(firebaseRTDatabase, 'products');
+
+	try {
+		const snapshot = await get(dbRef);
+		if (snapshot.exists()) {
+			return Object.values(snapshot.val());
+		}
+		return []; // snapshot이 없다면 텅텅빈 배열 리턴해줘
+	} catch (error) {
+		console.error('Error getting products', error);
+	}
+}

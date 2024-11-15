@@ -1,4 +1,4 @@
-import { addNewProduct, uploadFiles } from '@/libs/firebase/storage-related';
+import { addNewProduct, uploadFiles } from '@/libs/firebase/product-related';
 import React, { useState } from 'react';
 
 export default function AddNewPage() {

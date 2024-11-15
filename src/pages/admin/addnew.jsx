@@ -90,13 +90,10 @@ export default function AddNewPage() {
 			setTimeout(() => setSuccess(null), 4000);
 		}
 	};
-	// const handleClick = (e) => {
-	// 	e.preventDefault();
-	// 	handleSubmit(e);
-	// };
+
 	return (
 		<section className='add-new-products__page-container'>
-			<h2 className='page-title'>Admin Addnew page</h2>
+			<h2 className='page-title'>admin / Addnew page</h2>
 
 			<div className='sub-wrapper'>
 				<div className='preview-image__holder'>

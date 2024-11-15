@@ -1,17 +1,18 @@
 'use server';
 
-export async function createSession(uid, role) {
+export async function createSession(user, uid, role) {
 	try {
 		const response = await fetch('/api/set-session', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
 			},
-			body: JSON.stringify({ uid, role }),
+			body: JSON.stringify({ user, uid, role }),
 		});
 		if (!response.ok) {
-			throw new Error('Failed to create session');
+			console.log('response is not okay: set-session');
 		}
+		console.log('Session created successfully');
 	} catch (error) {
 		console.error('Error creating session:', error);
 	}
@@ -23,8 +24,9 @@ export async function removeSession() {
 			method: 'POST',
 		});
 		if (!response.ok) {
-			throw new Error('Failed to remove session');
+			console.log('Failed to remove session');
 		}
+		console.log('Session removed successfully');
 	} catch (error) {
 		console.error('Error removing session:', error);
 	}

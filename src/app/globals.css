@@ -111,11 +111,7 @@ nav {
 	color: var(--color-ooa-monotone-2);
 	transition: 0.1s ease-in-out;
 }
-/* .main-menu .button.special {
-	text-align: center;
-	color: var(--color-neutral-grey-200);
-	background-color: var(--color-ooa-monotone-3);
-} */
+
 /* -- Navbar - User --------------------------------------------------- */
 .user-info {
 	display: flex;
@@ -134,3 +130,14 @@ nav {
 	color: var(--color-neutral-grey-600);
 }
 /* -- Outlet --------------------------------------------------- */
+/* --------------- admin/addnew */
+.admin-dashboard__container .button.special {
+	text-align: center;
+	color: var(--color-neutral-grey-200);
+	background-color: var(--color-ooa-monotone-3);
+
+	/* padding: 0.5rem 2rem; */
+}
+.admin-dashboard__container .button.special:hover {
+	opacity: 80%;
+}

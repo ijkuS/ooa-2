@@ -338,7 +338,26 @@ I created a separated repository to understand about the different setting for a
 -    function adminUser(user)
      To check if the logged-in user is admin
 
-### The diffrence between Authentication and Authorization
+### 7. Admin: Add new products (with Firebase Realtime Database)
+
+-    Creating the Basic Structure for `addnew.jsx` UI (Building a New Product Entry Form)
+
+     -    Using useState to Create setProduct – for updating the product state.
+     -    Using useState to Create setFiles – for managing files state separately, as file inputs require URL handling and need a distinct useState.
+          -    Allow up to 10 image files.
+          -    Enable users to overwrite the image file list up to 10 files (e.g., if 2 images are uploaded and then 3 more are added, show a total of 5 uploaded images and inform the user they can add up to 5 more).
+     -    Using e.target – to individually retrieve name, value, and files.
+     -    Conditionally Executing – if name is file, execute setFile() and return; otherwise, execute setProduct().
+
+### Random ID generator
+
+```javascript
+this.id = `memo-${Date.now()}-${Math.floor(Math.random() * 100)}`;
+```
+
+### The difference between Authentication and Authorization
+
+[Ref: Authentication vs. authorization: What’s the difference?](https://www.ibm.com/think/topics/authentication-vs-authorization)
 
 ### The difference of Argument, Parameter, Constructor, Property
 

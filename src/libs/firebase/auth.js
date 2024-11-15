@@ -3,7 +3,7 @@ import {
 	onAuthStateChanged,
 	signInWithPopup,
 } from 'firebase/auth';
-import { get, ref } from 'firebase/database';
+import { get, ref as databaseRef } from 'firebase/database';
 import { firebaseAuth, firebaseRTDatabase } from './config';
 
 export async function login() {
@@ -32,16 +32,18 @@ export function onUserStateChange(callback) {
 		callback(updatedUser);
 		console.log(updatedUser, 'this is updatedUser');
 	});
-	console.log(unsubscribe, 'this is unsubscribe');
 	return unsubscribe;
 }
 export async function adminUser(user) {
-	const dbRef = ref(firebaseRTDatabase, 'admins');
+	const dbRef = databaseRef(firebaseRTDatabase, 'admins');
 	try {
 		const snapshot = await get(dbRef);
 		if (snapshot.exists()) {
 			const admins = snapshot.val();
 			const isAdmin = admins.includes(user.uid);
+			return { ...user, isAdmin };
+		}
+		if (user.uid === process.env.NEXT_PUBLIC_FIREBASE_ADMIN_UID) {
 			return { ...user, isAdmin };
 		}
 		return user;

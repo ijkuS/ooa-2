@@ -1,12 +1,10 @@
-'use client';
-
 import Link from 'next/link';
 import User from './User';
 
 import useUserSession from '@/hooks/use-user-session';
 
-export default function Navbar({ session }) {
-	const { user, role, login, logout } = useUserSession(session);
+export default function Navbar() {
+	const { user, role, login, logout } = useUserSession();
 
 	return (
 		<nav>
@@ -29,7 +27,7 @@ export default function Navbar({ session }) {
 				)}
 
 				{role === 'admin' && (
-					<Link className='button' href='/admin/addnew'>
+					<Link className='button' href='/admin/dashboard'>
 						Edit
 					</Link>
 				)}

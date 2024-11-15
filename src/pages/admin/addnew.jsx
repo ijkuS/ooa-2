@@ -77,7 +77,6 @@ export default function AddNewPage() {
 			console.error('Error on handleSubmit', error);
 			setSuccess(false);
 		} finally {
-			setTimeout(() => setSuccess(null), 4000);
 			setIsUploading(false);
 			setPreviewUrls([]);
 			setFiles([]);
@@ -88,6 +87,7 @@ export default function AddNewPage() {
 				description: '',
 				options: '',
 			});
+			setTimeout(() => setSuccess(null), 4000);
 		}
 	};
 	const handleClick = (e) => {
@@ -117,6 +117,7 @@ export default function AddNewPage() {
 					id='file-input'
 					multiple
 					required
+					value={product.files}
 					onChange={handleChange}
 				/>
 				<label htmlFor='product-title-input'>Product Title</label>
@@ -126,6 +127,7 @@ export default function AddNewPage() {
 					id='product-title-input'
 					placeholder='CREW-NECK MERINO WOOL TOP'
 					required
+					value={product.title}
 					onChange={handleChange}
 				/>
 				<label htmlFor='category-input'>Category</label>
@@ -135,6 +137,7 @@ export default function AddNewPage() {
 					id='category-input'
 					placeholder='Women'
 					required
+					value={product.category}
 					onChange={handleChange}
 				/>
 				<label htmlFor='price-input'>Price (USD)</label>
@@ -144,6 +147,7 @@ export default function AddNewPage() {
 					id='price-input'
 					placeholder='155'
 					required
+					value={product.price}
 					onChange={handleChange}
 				/>
 				<label htmlFor='description-input'>Description</label>
@@ -153,6 +157,7 @@ export default function AddNewPage() {
 					id='description-input'
 					placeholder='Write description about the product'
 					required
+					value={product.description}
 					onChange={handleChange}
 				/>
 				<label htmlFor='option-input'>Size Options</label>
@@ -161,8 +166,8 @@ export default function AddNewPage() {
 					name='options'
 					id='size-option-input'
 					placeholder='Options(separated by commas)'
-					// value={product.options}
 					required
+					value={product.options}
 					onChange={handleChange}
 				/>
 				<button

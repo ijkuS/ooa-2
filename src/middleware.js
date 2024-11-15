@@ -51,7 +51,7 @@ export default function middleware(request) {
 		const sessionData = JSON.parse(decodeURIComponent(sessionCookie));
 		// console.log('-------------------------------------');
 		// console.log('🍪🍪 2nd sessionCookie:', sessionCookie);
-		// console.log('🍎 1st Session data:', sessionData); // user
+		console.log('🍎 1st Session data:', sessionData); // user
 		// console.log('🍎 sessionData.uid: ', sessionData.uid);
 		// console.log('⭐️⭐️ SessionData.role is...', sessionData.role); // 현재 uid정보가 나옴
 
@@ -67,11 +67,15 @@ export default function middleware(request) {
 		}
 		if (
 			memberOnlyRoutes.includes(request.nextUrl.pathname) &&
-			!(
-				sessionData.uid === adminUid ||
-				sessionData.isAnonymous === false
-			)
+			sessionData.user.isAnonymous !== false
 		) {
+			// console.log('🍎🍎🍎🍎🍎 Session data for member:', sessionData);
+			// console.log('🍎🍎🍎🍎🍎', sessionData.user.uid); // undefined
+
+			// console.log('🍎🍎🍎🍎🍎', sessionData.user.isAnonymous); // undefined
+			// console.log(
+			// 	'sessionData exist, but sessionData.isAnonymous is wrong'
+			// );
 			return NextResponse.redirect(
 				new URL(PUBLIC_HOME_ROUTE, request.url)
 			);

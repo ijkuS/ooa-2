@@ -36,9 +36,7 @@ export default function AllProductsPage() {
 					<ul className='product-list'>
 						{products.map((product) => (
 							<li key={product.id}>
-								{/* <Link href={`/products/${product.id}}`}> */}
 								<ProductCard product={product} />
-								{/* </Link> */}
 							</li>
 						))}
 					</ul>

@@ -1,5 +1,6 @@
 import ProductCard from '@/components/ProductCard';
 import { getProducts } from '@/libs/firebase/product-related';
+import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 
 export default function AllProductsPage() {
@@ -34,14 +35,12 @@ export default function AllProductsPage() {
 				{products && (
 					<ul className='product-list'>
 						{products.map((product) => (
-							<ProductCard
-								key={product.id}
-								product={product}
-							/>
+							<li key={product.id}>
+								{/* <Link href={`/products/${product.id}}`}> */}
+								<ProductCard product={product} />
+								{/* </Link> */}
+							</li>
 						))}
-						{/* {products.map((product) => (
-							<div>{product.title}</div>
-						))} */}
 					</ul>
 				)}
 			</div>

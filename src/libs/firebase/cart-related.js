@@ -3,16 +3,23 @@ import { firebaseRTDatabase, firebaseStorage } from './config';
 import { ref } from 'firebase/storage';
 
 export async function getCart(userId) {
-	const dbRef = databaseRef(firebaseRTDatabase, `carts/${userId}`);
+	const cartRef = databaseRef(firebaseRTDatabase, `carts/${userId}`);
+	console.log(cartRef);
 	try {
-		const snapshot = await get(dbRef);
+		const snapshot = await get(cartRef);
 		if (snapshot.exists()) {
 			const items = snapshot.val();
-			console.log(items);
+			const modifiedItems = Object.values(items);
+			// console.log('🍎🍎 modifiedItems:', modifiedItems);
+
+			return modifiedItems;
+		} else {
+			console.log('No data available from getCart');
+			return [];
 		}
-		return {}; // []으로 해야하나...? without snapshot,
 	} catch (error) {
 		console.error('Error getting cart', error);
+		return [];
 	}
 }
 

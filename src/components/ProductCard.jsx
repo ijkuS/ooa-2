@@ -5,8 +5,9 @@ export default function ProductCard({ product }) {
 	const { images, title, price, category, id } = product; // Destructure within the component
 
 	return (
-		<Link href={`/products/${id}`} id={id}>
-			<div className='product-card__container'>
+		<>
+			<Link href={`/products/${id}`} id={id}>
+				{/* <div className='product-card__container'> */}
 				<div className='image__holder'>
 					<img src={images[0]} alt={title} />
 				</div>
@@ -15,7 +16,8 @@ export default function ProductCard({ product }) {
 					<p className='category'>{category}</p>
 					<p className='price'>{`${price} USD`}</p>
 				</div>
-			</div>
-		</Link>
+				{/* </div> */}
+			</Link>
+		</>
 	);
 }

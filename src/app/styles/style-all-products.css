@@ -22,16 +22,19 @@
 	/* w/o display, object-position of img didn't work */
 	width: 100%;
 	height: 400px;
-	max-width: 400px;
+	/* max-width: 400px; */
 	overflow: hidden;
-	/* border: 1px solid red; */
 }
 .all-products__page-container .image__holder img {
-	width: 100%;
 	object-fit: cover;
-	/* object-position: top; */
+	object-position: 50% 1%;
 }
-
+.all-products__page-container .text__holder {
+	margin-top: 1rem;
+}
+.all-products__page-container .text__holder .product-title {
+	font-size: 1rem;
+}
 @media (max-width: 1200px) {
 	.all-products__page-container ul li {
 		display: flex;

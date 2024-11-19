@@ -3,6 +3,7 @@ import Link from 'next/link';
 import User from './User';
 
 import useUserSession from '@/hooks/use-user-session';
+import { IoBagOutline } from 'react-icons/io5';
 
 export default function Navbar() {
 	const { user, role, login, logout } = useUserSession();
@@ -21,15 +22,9 @@ export default function Navbar() {
 					All Products
 				</Link>
 
-				{role === 'member' && (
-					<Link className='button' href='/cart'>
-						Bag
-					</Link>
-				)}
-
 				{role === 'admin' && (
 					<Link className='button' href='/admin/dashboard'>
-						Edit
+						Admin
 					</Link>
 				)}
 
@@ -43,6 +38,12 @@ export default function Navbar() {
 					</button>
 				)}
 				{user && <User user={user} />}
+
+				{user && (
+					<Link className='icons' href='/cart'>
+						<IoBagOutline />
+					</Link>
+				)}
 			</menu>
 		</nav>
 	);

@@ -29,6 +29,11 @@ This web development project focuses on seamlessly merging offline and online sh
      -    [4. Authentication with Firebase](#4-authentication-with-firebase)
      -    [5. Login & logout functions with UI (Navbar button)](#5-login--logout-functions-with-ui-navbar-button)
      -    [6. Authentication, Authorization, Protected Routes](#6-authentication-authorization-protected-routes)
+     -    [7. Admin: Add new products (with Firebase Realtime Database)](#7-admin-add-new-products-with-firebase-realtime-database)
+
+     -    [9. Cart Page](#9-cart-page-with-firebsase-realtime-database)
+
+     -    [Random ID generator](#random-id-generator)
 
      -    [The difference of Argument, Parameter, Constructor, Property](#the-difference-of-argument-parameter-constructor-property)
      -    [git Tips: Delete a file from a Git repository](#git-tips-delete-a-file-from-a-git-repository)
@@ -351,7 +356,17 @@ I created a separated repository to understand about the different setting for a
 
 ### 8. TanStack Query v5
 
+I used TanStack Query for the previous e-commerce project which was built without Next.js.
+
 [Ref: Next.js fetch and TanStack Query](https://blog.toktokhan.dev/how-to-use-effectivelynext-js-fetchtanstack-query-333c28168e92)
+
+### 9. Cart page with Firebsase Realtime Database
+
+-    Click 'Add to Bag' button -> bring the selected product data
+-    Make functions related to Cart(Bag)
+     -    getCart(): Bring products in a cart
+     -    addOrUpdateToCart(): Add/Update items in a cart
+     -    removeFromCart(): Remove items in a cart
 
 ### Random ID generator
 

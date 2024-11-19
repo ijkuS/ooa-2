@@ -1,3 +1,5 @@
+import useUserSession from '@/hooks/use-user-session';
+import { addOrUpdateCart } from '@/libs/firebase/cart-related';
 import { getProducts } from '@/libs/firebase/product-related';
 import { useState } from 'react';
 
@@ -18,6 +20,8 @@ export async function getServerSideProps(context) {
 }
 
 export default function ProductDetail({ product }) {
+	const { user } = useUserSession();
+
 	const { images, title, price, category, id, options, description } =
 		product;
 
@@ -27,6 +31,26 @@ export default function ProductDetail({ product }) {
 		setSelected((prevSelected) =>
 			prevSelected === value ? null : value
 		);
+	};
+	const handleAddtoBag = (e) => {
+		e.preventDefault();
+		console.log(user);
+		console.log('Add to bag');
+		if (!selected || selected.length === 0) {
+			alert('You did not select any option');
+			return;
+		}
+
+		const product = {
+			id,
+			images,
+			title,
+			category,
+			price,
+			options: selected,
+			quantity: 1,
+		};
+		addOrUpdateCart(user.uid, product);
 	};
 	return (
 		<section className='product-detail__page-container'>
@@ -72,7 +96,11 @@ export default function ProductDetail({ product }) {
 					<p className='description'>{description} </p>
 
 					<div className='buttons'>
-						<button className='add-bag'>Add to Bag</button>
+						<button
+							className='add-bag'
+							onClick={handleAddtoBag}>
+							Add to Bag
+						</button>
 						<button className='checkout'>Checkout</button>
 					</div>
 				</div>

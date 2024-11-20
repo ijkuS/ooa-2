@@ -4,6 +4,24 @@
 @tailwind components;
 @tailwind utilities;
 
+/***
+This file contains the general CSS styling, including:
+
+* General Body and Global CSS: Base styles for the entire application.
+* Navbar: Styling for the navigation bar.
+* General Outlet: Shared styles for outlet components.
+* General Media Queries: Responsive styles for different screen sizes.
+
+I have separated the CSS styling for each page into the following files:
+
+- Location: app/styles/
+
+* style-addnew.css
+* style-all-products.css
+* style-product-detail.css
+
+*/
+
 * {
 	margin: 0;
 	padding: 0;
@@ -118,14 +136,6 @@ nav {
 	color: var(--color-ooa-monotone-2);
 	transition: 0.1s ease-in-out;
 }
-.main-menu .icons {
-	font-size: 1.25rem;
-	padding-bottom: 2px;
-}
-.main-menu .icons:hover {
-	color: var(--color-ooa-monotone-2);
-	transition: 0.1s ease-in-out;
-}
 
 /* -- Navbar - User --------------------------------------------------- */
 .user-info {
@@ -142,6 +152,35 @@ nav {
 	font-size: 0.7rem;
 	color: var(--color-neutral-grey-600);
 }
+/* -- Navbar - Cart Icon --------------------------------------------------- */
+.cart-icon {
+	display: flex;
+	align-items: center;
+	font-size: 1.25rem;
+	width: fit-content;
+}
+.cart-icon:hover {
+	color: var(--color-ooa-monotone-2);
+	transition: 0.1s ease-in-out;
+}
+
+.cart-badge {
+	position: relative;
+	/* right: -1.85rem;
+	top: -0.35rem; */
+
+	padding: 2px 6px;
+	margin-right: 3px;
+
+	background-color: var(--color-neutral-grey-900);
+	color: var(--color-white);
+	border-radius: 100%;
+
+	font-size: 0.6rem;
+	font-weight: 400;
+	text-align: center;
+}
+
 /* -- Banner --------------------------------------------------- */
 
 .landing-banner {

@@ -40,7 +40,7 @@ export default function Navbar() {
 				{user && <User user={user} />}
 
 				{user && (
-					<Link className='icons' href='/cart'>
+					<Link className='icons cart' href='/cart'>
 						<CartStatus user={user} />
 					</Link>
 				)}

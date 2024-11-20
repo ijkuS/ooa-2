@@ -31,7 +31,11 @@ This web development project focuses on seamlessly merging offline and online sh
      -    [6. Authentication, Authorization, Protected Routes](#6-authentication-authorization-protected-routes)
      -    [7. Admin: Add new products (with Firebase Realtime Database)](#7-admin-add-new-products-with-firebase-realtime-database)
 
+     -    [8. Working Without TanStack Query Due to React Version Compatibility Issues](#8-working-without-tanstack-query-due-to-react-version-compatibility-issues)
+
      -    [9. Cart Page](#9-cart-page-with-firebsase-realtime-database)
+
+     -    [Frontend Global State Management](#frontend-global-state-management)
 
      -    [Random ID generator](#random-id-generator)
 
@@ -60,20 +64,21 @@ Users should be able to:
 
 General
 
--    [ ] See all products on the main homepage (A, M, N)
--    [ ] See all product details (A, M, N)
-     -    [ ] Add to bag button (A, M)
+-    [x] See all products on the main homepage (A, M, N)
+-    [x] See all product details (A, M, N)
+     -    [x] Add to bag button (A, M)
 -    [ ] LocalStorage
 
 SignUp & Bag(cart)
 
--    [ ] Login/Logout/SignUp (A, M, N)
--    [ ] Bag (A, M)
-     -    [ ] Add products in a cart
+-    [x] Login/Logout/SignUp (A, M, N)
+-    [x] Bag (A, M)
+     -    [x] Add products in a cart
+     -    [ ] Edit items in a cart (remove, update options)
 
 Add & Edit(A)
 
--    [ ] Add new product data
+-    [x] Add new product data
 -    [ ] Edit existing product data
 
 **Good to have**
@@ -229,6 +234,7 @@ for admins
      -    Authentification
      -    Realtime database
      -    Storage
+-    [Recoil](https://recoiljs.org/)
 
 ## Challenges and Lessons
 
@@ -354,9 +360,15 @@ I created a separated repository to understand about the different setting for a
      -    Using e.target – to individually retrieve name, value, and files.
      -    Conditionally Executing – if name is file, execute setFile() and return; otherwise, execute setProduct().
 
-### 8. TanStack Query v5
+### 8. Working Without TanStack Query Due to React Version Compatibility Issues
 
-I used TanStack Query for the previous e-commerce project which was built without Next.js.
+Due to the current version of React, an installation error occurred with TanStack Query, which I usually used in the previous projects. Using the app without it for now.
+
+```json
+     "next": "15.0.2",
+     "react": "19.0.0-rc-02c0e824-20241028",
+     "react-dom": "19.0.0-rc-02c0e824-20241028",
+```
 
 [Ref: Next.js fetch and TanStack Query](https://blog.toktokhan.dev/how-to-use-effectivelynext-js-fetchtanstack-query-333c28168e92)
 
@@ -367,6 +379,15 @@ I used TanStack Query for the previous e-commerce project which was built withou
      -    getCart(): Bring products in a cart
      -    addOrUpdateToCart(): Add/Update items in a cart
      -    removeFromCart(): Remove items in a cart
+
+### Frontend Global State Management
+- Definition of state management in frontend 
+1. UI/UX 
+Recoil 
+
+[Ref in KO: Common Pitfalls When Using Next.js and Strategies to Overcome Them](https://reactnext-central.xyz/blog/nextjs-overivew/nextjs-challenges)
+[Ref in KO: Comparison of 7 State Management Methods in React and Next.js](https://ux.stories.pe.kr/342#google_vignette)
+[Ref in KO: Migration from react to Next.js](https://jwookj.tistory.com/117)
 
 ### Random ID generator
 

@@ -16,7 +16,6 @@ export default function ProductCard({ product }) {
 					<p className='category'>{category}</p>
 					<p className='price'>{`${price} USD`}</p>
 				</div>
-				{/* </div> */}
 			</Link>
 		</>
 	);

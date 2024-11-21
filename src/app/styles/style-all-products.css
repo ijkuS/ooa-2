@@ -1,4 +1,5 @@
 .all-products__page-container ul {
+	width: 100%;
 	display: flex;
 	flex-direction: row;
 	flex-wrap: wrap;
@@ -35,6 +36,8 @@
 .all-products__page-container .text__holder .product-title {
 	font-size: 1rem;
 }
+/* ----- Media Queries ------------------------------------------- */
+
 @media (max-width: 1200px) {
 	.all-products__page-container ul li {
 		display: flex;

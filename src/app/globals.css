@@ -43,28 +43,9 @@ I have separated the CSS styling for each page into the following files:
 	--color-ooa-monotone-3: #333740;
 	--color-ooa-monotone-4: #1c1d20;
 	--color-ooa-monotone-5: #0e0e0e;
-
-	/* --color-text: #374151;
-  --color-text-light: #9ca3af;
-  --color-point: #a3e635;
---color-bg: #f9fafb; */
-
-	/* --background: #ffffff;
-	--foreground: #171717; */
-}
-
-@media (prefers-color-scheme: dark) {
-	:root {
-		/* --background: #0a0a0a;
-		--foreground: #ededed; */
-	}
 }
 
 body {
-	/* color: var(--foreground);
-	background: var(--background);
-	font-family: Arial, Helvetica, sans-serif; */
-
 	display: flex;
 	justify-content: center;
 	width: 100vw;
@@ -72,19 +53,15 @@ body {
 	font-size: 1rem;
 	color: var(--color-neutral-grey-900);
 	background-color: var(--color-neutral-grey-200);
+	overflow-x: hidden;
 }
 
 .main-wrapper {
 	width: 60vw;
-	max-width: 1400px;
+	max-width: 1200px;
 	min-width: 400px;
+	margin: auto;
 }
-/* a:visited {
-  color: var(--color-neutral-grey-900);
-}
-a {
-  text-decoration: none;
-} */
 
 /* -- Navbar --------------------------------------------------- */
 nav {
@@ -189,6 +166,7 @@ nav {
 }
 /* -- Outlet --------------------------------------------------- */
 .page-title {
+	width: 100%;
 	padding: 1rem 0 1.6rem 0;
 	margin-bottom: 1rem;
 
@@ -196,7 +174,7 @@ nav {
 
 	text-transform: uppercase;
 	text-align: left;
-	font-weight: 300;
+	font-weight: 400;
 	border-bottom: 1px solid var(--color-neutral-grey-400);
 }
 .admin-dashboard__container .button.special {

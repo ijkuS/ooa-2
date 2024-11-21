@@ -7,7 +7,6 @@ export default function ProductCard({ product }) {
 	return (
 		<>
 			<Link href={`/products/${id}`} id={id}>
-				{/* <div className='product-card__container'> */}
 				<div className='image__holder'>
 					<img src={images[0]} alt={title} />
 				</div>

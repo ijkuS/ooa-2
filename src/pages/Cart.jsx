@@ -1,10 +1,13 @@
 import CartItem from '@/components/CartItem';
 import useUserSession from '@/hooks/use-user-session';
-import React from 'react';
+import { getCart } from '@/libs/firebase/cart-related';
+import React, { useEffect, useState } from 'react';
 
 export default function CartPage() {
-	const { user } = useUserSession();
-	const uid = user.uid;
+	const { user, uid } = useUserSession();
+
+	console.log('🔥 this is from CartPage', user, uid);
+
 	const [cartItems, setCartItems] = useState(null);
 	const [isLoading, setIsLoading] = useState(true);
 	const [isError, setIsError] = useState(false);

@@ -38,17 +38,20 @@ export async function adminUser(user) {
 	const dbRef = databaseRef(firebaseRTDatabase, 'admins');
 	try {
 		const snapshot = await get(dbRef);
-		if (snapshot.exists()) {
-			const admins = snapshot.val();
-			const isAdmin = admins.includes(user.uid);
-			return { ...user, isAdmin };
-		}
-		if (user.uid === process.env.NEXT_PUBLIC_FIREBASE_ADMIN_UID) {
-			return { ...user, isAdmin };
-		}
-		return user;
+		const isAdmin = snapshot.exists()
+			? snapshot.val().includes(user.uid)
+			: user.uid === process.env.NEXT_PUBLIC_FIREBASE_ADMIN_UID;
+		// if (snapshot.exists()) {
+		// 	const admins = snapshot.val();
+		// 	const isAdmin = admins.includes(user.uid);
+		// 	return { ...user, isAdmin };
+		// }
+		// if (user.uid === process.env.NEXT_PUBLIC_FIREBASE_ADMIN_UID) {
+		// 	return { ...user, isAdmin };
+		// }
+		return { ...user, isAdmin };
 	} catch (error) {
 		console.log(error);
-		return null;
+		return { ...user, isAdmin: false };
 	}
 }

@@ -1,6 +1,5 @@
 import { ref as databaseRef, get, remove, set } from 'firebase/database';
-import { firebaseRTDatabase, firebaseStorage } from './config';
-import { ref } from 'firebase/storage';
+import { firebaseRTDatabase } from './config';
 
 export async function getCart(userId) {
 	const cartRef = databaseRef(firebaseRTDatabase, `carts/${userId}`);

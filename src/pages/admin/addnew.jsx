@@ -6,6 +6,7 @@ export default function AddNewPage() {
 	const [product, setProduct] = useState({
 		title: '',
 		price: '',
+		brand: '',
 		category: '',
 		description: '',
 		options: '',
@@ -13,26 +14,6 @@ export default function AddNewPage() {
 	const [previewUrls, setPreviewUrls] = useState([]);
 	const [isUploading, setIsUploading] = useState(false);
 	const [success, setSuccess] = useState(false);
-
-	// const handleChange = (e) => {
-	// 	e.preventDefault();
-	// 	const { name, value, files: newFiles } = e.target;
-	// 	if (name === 'files') {
-	// 		const fileArray = Array.from(newFiles);
-	// 		setFiles((prevFiles) =>
-	// 			[...prevFiles, ...fileArray].slice(0, 10)
-	// 		);
-	// 		const newUrls = fileArray.map((file) =>
-	// 			URL.createObjectURL(file)
-	// 		);
-	// 		setPreviewUrls((prevUrls) =>
-	// 			[...prevUrls, ...newUrls].slice(0, 10)
-	// 		);
-	// 		return;
-	// 	} else {
-	// 		setProduct((prevProduct) => ({ ...prevProduct, [name]: value }));
-	// 	}
-	// };
 
 	const handleChange = (e) => {
 		e.preventDefault();
@@ -83,6 +64,7 @@ export default function AddNewPage() {
 			setProduct({
 				title: '',
 				price: '',
+				brand: '',
 				category: '',
 				description: '',
 				options: '',
@@ -131,6 +113,17 @@ export default function AddNewPage() {
 						value={product.title}
 						onChange={handleChange}
 					/>
+					<label htmlFor='category-input'>Brand</label>
+					<input
+						type='text'
+						name='brand'
+						id='brand-input'
+						placeholder='Women'
+						required
+						value={product.brand}
+						onChange={handleChange}
+					/>
+
 					<label htmlFor='category-input'>Category</label>
 					<input
 						type='text'

@@ -1,5 +1,10 @@
+.all-products__page-container {
+	width: 100%;
+}
+
 .all-products__page-container ul {
 	width: 100%;
+
 	display: flex;
 	flex-direction: row;
 	flex-wrap: wrap;
@@ -28,7 +33,8 @@
 }
 .all-products__page-container .image__holder img {
 	object-fit: cover;
-	object-position: 50% 1%;
+	/* object-position: 50% 1%; */
+	object-position: top;
 }
 .all-products__page-container .text__holder {
 	margin-top: 1rem;

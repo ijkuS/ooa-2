@@ -1,4 +1,4 @@
-import { ref as databaseRef, get, set } from 'firebase/database';
+import { ref as databaseRef, get, remove, set } from 'firebase/database';
 
 import { firebaseRTDatabase, firebaseStorage } from './config';
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
@@ -51,4 +51,9 @@ export async function getProducts() {
 	} catch (error) {
 		console.error('Error getting products', error);
 	}
+}
+
+export async function removeProduct(productId) {
+	const dbRef = databaseRef(firebaseRTDatabase, `products/${productId}`);
+	return remove(dbRef);
 }

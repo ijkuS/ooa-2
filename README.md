@@ -35,6 +35,8 @@ This web development project focuses on seamlessly merging offline and online sh
 
      -    [9. Cart Page](#9-cart-page-with-firebsase-realtime-database)
 
+     -    [Optimistic Update - useQuery]()
+
      -    [Frontend Global State Management](#frontend-global-state-management)
 
      -    [Random ID generator](#random-id-generator)
@@ -380,10 +382,28 @@ Due to the current version of React, an installation error occurred with TanStac
      -    addOrUpdateToCart(): Add/Update items in a cart
      -    removeFromCart(): Remove items in a cart
 
+### Optimistic Updates with TanStack Query
+
+TanStack Query is a powerful library for caching and managing data related to API calls. One of its standout features is support for optimistic updates, which allows the UI to reflect changes even before the server confirms the update.
+
+Optimistic updates enable immediate UI feedback. For instance, when a user likes a post, the UI can increment the like count instantly, without waiting for the server's response. This provides a smoother and more responsive user experience.
+
+While optimistic updates can greatly enhance the user experience, they require careful handling. If the server request fails, the application must revert the UI to its previous state. This is where implementing a rollback mechanism becomes essential. For this reason, it’s best to use optimistic updates selectively, in scenarios where quick feedback is crucial and the risk of failure is low.
+
+In TanStack Query, you can perform optimistic updates using the onMutate option provided by the useMutation hook. The onMutate function runs before the API call, making it a key part of implementing optimistic updates. It allows you to:
+
+-    Update the current data cache to reflect the changes immediately.
+-    Modify the UI for a seamless user experience.
+-    Implement rollback logic to restore the previous state if the request fails.
+
+This combination of features makes TanStack Query an excellent choice for managing data while improving the perceived performance of your application.
+
 ### Frontend Global State Management
-- Definition of state management in frontend 
-1. UI/UX 
-Recoil 
+
+-    Definition of state management in frontend
+
+1. UI/UX
+   Recoil
 
 [Ref in KO: Common Pitfalls When Using Next.js and Strategies to Overcome Them](https://reactnext-central.xyz/blog/nextjs-overivew/nextjs-challenges)
 [Ref in KO: Comparison of 7 State Management Methods in React and Next.js](https://ux.stories.pe.kr/342#google_vignette)

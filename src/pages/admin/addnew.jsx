@@ -1,7 +1,9 @@
-import { addNewProduct, uploadFiles } from '@/libs/firebase/product-related';
+import useProducts from '@/hooks/useProducts';
+import { uploadFiles } from '@/libs/firebase/product-related';
 import React, { useState } from 'react';
 
 export default function AddNewPage() {
+	const { addProductMutation } = useProducts();
 	const [files, setFiles] = useState([]);
 	const [product, setProduct] = useState({
 		title: '',
@@ -46,31 +48,43 @@ export default function AddNewPage() {
 		setIsUploading(true);
 		try {
 			const urls = await uploadFiles(files);
-			addNewProduct(product, urls);
-			setProduct((prevProduct) => ({
-				...prevProduct,
-				imageUrls: [...(prevProduct.imageUrls || []), ...urls],
-			}));
-			// console.log(urls);
-			// console.log(product);
-			setSuccess(true);
-		} catch (error) {
-			console.error('Error on handleSubmit', error);
-			setSuccess(false);
+			// addNewProduct(product, urls);
+			addProductMutation.mutate(
+				{ product, urls },
+				{
+					onSuccess: () => {
+						setProduct((prevProduct) => ({
+							...prevProduct,
+							imageUrls: [
+								...(prevProduct.imageUrls || []),
+								...urls,
+							],
+						}));
+						setSuccess(true);
+						resetForm();
+					},
+					onError: (error) => {
+						console.error('Error adding product: ', error);
+						setSuccess(false);
+					},
+				}
+			);
 		} finally {
 			setIsUploading(false);
-			setPreviewUrls([]);
-			setFiles([]);
-			setProduct({
-				title: '',
-				price: '',
-				brand: '',
-				category: '',
-				description: '',
-				options: '',
-			});
-			setTimeout(() => setSuccess(null), 4000);
 		}
+	};
+	const resetForm = () => {
+		setFiles([]);
+		setPreviewUrls([]);
+		setProduct({
+			title: '',
+			price: '',
+			brand: '',
+			category: '',
+			description: '',
+			options: '',
+		});
+		setTimeout(() => setSuccess(null), 4000);
 	};
 
 	return (

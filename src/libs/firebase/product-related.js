@@ -17,6 +17,8 @@ export async function uploadFiles(files) {
 		});
 		const urls = await Promise.all(uploadPromises);
 		console.log(urls);
+		// const filteredUrls = urls.filter((url) => url);
+
 		return urls;
 	} catch (error) {
 		console.error('Error uploading files:', error);
@@ -26,16 +28,16 @@ export async function uploadFiles(files) {
 export async function addNewProduct(product, imageUrls) {
 	const id = `ooa-${Date.now()}-${Math.floor(Math.random() * 100)}`;
 	const dbRef = databaseRef(firebaseRTDatabase, `products/${id}`);
+
 	try {
-		set(dbRef, {
+		await set(dbRef, {
 			...product,
 			id,
-			price: product.price,
 			images: Array.isArray(imageUrls) ? imageUrls : [imageUrls],
-			options: product.options.split(','),
+			options: product.options ? product.options.split(',') : [],
 		});
 	} catch (error) {
-		console.error('Error adding new product:', error);
+		console.error('Error adding new product: ', error);
 	}
 }
 

@@ -13,9 +13,14 @@ export default function useProducts() {
 		queryFn: getProducts,
 	});
 	const addProductMutation = useMutation({
-		mutationFn: addNewProduct,
+		mutationFn: async ({ product, urls }) => {
+			return await addNewProduct(product, urls);
+		},
 		onSuccess: () => {
 			queryClient.invalidateQueries({ queryKey: ['products'] });
+		},
+		onError: (error) => {
+			console.error('Error adding product: ', error);
 		},
 	});
 	return {

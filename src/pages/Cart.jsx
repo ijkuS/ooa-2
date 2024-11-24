@@ -2,23 +2,25 @@ import CartItem from '@/components/CartItem';
 import CartSummaryCard from '@/components/CartSummaryCard';
 import { GENERAL_DELIVERY_FEE } from '@/constants/shop-constants';
 import useUserSession from '@/hooks/use-user-session';
-import { getCart } from '@/libs/firebase/cart-related';
-import { useQuery } from '@tanstack/react-query';
+import useCart from '@/hooks/useCart';
+
 import React from 'react';
 
 export default function CartPage() {
 	const { uid } = useUserSession();
-	const {
-		isPending,
-		isError,
-		data: cartItems,
-	} = useQuery({
-		queryKey: ['carts', uid],
-		queryFn: async () => {
-			const data = await getCart(uid);
-			return data;
-		},
-	});
+	// const uid = user.uid;
+	const { isPending, isError, cartItems } = useCart();
+	// const {
+	// 	isPending,
+	// 	isError,
+	// 	data: cartItems,
+	// } = useQuery({
+	// 	queryKey: ['carts', uid],
+	// 	queryFn: async () => {
+	// 		const data = await getCart(uid);
+	// 		return data;
+	// 	},
+	// });
 
 	const hasCartItems = cartItems && cartItems.length > 0;
 	const cartItemPrice =

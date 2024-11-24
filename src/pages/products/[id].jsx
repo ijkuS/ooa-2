@@ -1,5 +1,6 @@
 import useUserSession from '@/hooks/use-user-session';
-import { addOrUpdateCart } from '@/libs/firebase/cart-related';
+import useCart from '@/hooks/useCart';
+// import { addOrUpdateCart } from '@/libs/firebase/cart-related';
 import { getProducts } from '@/libs/firebase/product-related';
 import { useState } from 'react';
 
@@ -21,20 +22,20 @@ export async function getServerSideProps(context) {
 
 export default function ProductDetail({ product }) {
 	const { user } = useUserSession();
-
+	const { addOrUpdateCartMutation } = useCart();
 	const { images, title, price, category, id, options, description } =
 		product;
 
 	const [selected, setSelected] = useState();
+	const [success, setSuccess] = useState(false);
 	const handleSelect = (e) => {
 		const value = e.target.value;
 		setSelected((prevSelected) =>
 			prevSelected === value ? null : value
 		);
 	};
-	const handleAddtoBag = (e) => {
+	const handleAddtoBag = async (e) => {
 		e.preventDefault();
-		console.log(user);
 		console.log('Add to bag');
 		if (!selected || selected.length === 0) {
 			alert('You did not select any option');
@@ -47,10 +48,22 @@ export default function ProductDetail({ product }) {
 			title,
 			category,
 			price,
-			options: selected,
+			options: selected || options[0], // Default to first option if none selected
 			quantity: 1,
 		};
-		addOrUpdateCart(user.uid, product);
+		try {
+			addOrUpdateCartMutation.mutate(
+				{ userId: user.uid, product },
+				{
+					onSuccess: () => {
+						setSuccess(true);
+						setTimeout(() => setSuccess(null), 3000);
+					},
+				}
+			);
+		} catch (error) {
+			console.error('Error adding or updating cart');
+		}
 	};
 	return (
 		<section className='product-detail__page-container'>
@@ -94,7 +107,12 @@ export default function ProductDetail({ product }) {
 						</div>
 					</div>
 					<p className='description'>{description} </p>
-
+					{success && (
+						<p className='alert success'>
+							The item has been succesfully added to your
+							shopping cart
+						</p>
+					)}
 					<div className='buttons'>
 						<button
 							className='add-bag'

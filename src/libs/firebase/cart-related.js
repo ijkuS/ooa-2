@@ -3,7 +3,7 @@ import { firebaseRTDatabase } from './config';
 
 export async function getCart(userId) {
 	const cartRef = databaseRef(firebaseRTDatabase, `carts/${userId}`);
-	console.log(cartRef);
+	// console.log(cartRef);
 	try {
 		const snapshot = await get(cartRef);
 		if (snapshot.exists()) {

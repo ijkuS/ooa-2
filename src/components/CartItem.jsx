@@ -1,3 +1,4 @@
+import useCart from '@/hooks/useCart';
 import { addOrUpdateCart, removeFromCart } from '@/libs/firebase/cart-related';
 import Link from 'next/link';
 import React from 'react';
@@ -8,18 +9,38 @@ import {
 } from 'react-icons/ai';
 
 export default function CartItem({ cartItem, uid }) {
-	// console.log('🛒🛒', cartItem, uid);
 	const { images, title, price, category, id, quantity, options } = cartItem;
+	const { addOrUpdateCartMutation, removeFromCartMutation } = useCart();
+
 	const handleMinus = () => {
-		addOrUpdateCart(uid, { ...cartItem, quantity: quantity - 1 });
+		if (quantity < 2) return; // quantity shouldn't be less than 1
+		addOrUpdateCartMutation.mutate({
+			userId: uid,
+			product: { ...cartItem, quantity: quantity - 1 },
+		});
+
+		// addOrUpdateCart(uid, { ...cartItem, quantity: quantity - 1 });
 		console.log('-1');
 	};
-	const handlePlus = () => {
-		addOrUpdateCart(uid, { ...cartItem, quantity: quantity + 1 });
-		console.log('+1');
+	const handlePlus = async () => {
+		try {
+			addOrUpdateCartMutation.mutate({
+				userId: uid,
+				product: {
+					...cartItem,
+					quantity: quantity + 1,
+				},
+
+				onSuccess: () => {
+					console.log('+1, handlePlus is doing well');
+				},
+			});
+		} catch (error) {
+			console.error('Error handlePlus', error);
+		}
 	};
 	const handleDelete = () => {
-		removeFromCart(uid, id);
+		removeFromCartMutation.mutate({ userId: uid, productId: id });
 		console.log('clicked remove from Cart');
 	};
 

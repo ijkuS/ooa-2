@@ -22,8 +22,16 @@ export default function CartStatus() {
 		<div className='cart-icon'>
 			{isPending && <p>Loading...</p>}
 			{isError && <p>There is something wrong...</p>}
-			{cartItems && console.log(cartItems.length)}
-			{cartItems && <p className='cart-badge'>{cartItems.length}</p>}
+			{/* {cartItems && console.log(cartItems.length)} */}
+			{cartItems && (
+				<p className='cart-badge'>
+					{/* {cartItems.length} */}
+					{cartItems.reduce(
+						(total, item) => total + item.quantity,
+						0
+					)}
+				</p>
+			)}
 			<IoBagOutline />
 		</div>
 	);

@@ -8,7 +8,6 @@ import React from 'react';
 
 export default function CartPage() {
 	const { uid } = useUserSession();
-	// const uid = user.uid;
 	const { isPending, isError, cartItems } = useCart();
 	// const {
 	// 	isPending,

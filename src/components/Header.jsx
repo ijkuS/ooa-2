@@ -4,11 +4,9 @@ import User from './User';
 
 import useUserSession from '@/hooks/use-user-session';
 import CartStatus from './CartStatus';
-import useCart from '@/hooks/useCart';
 
 export default function Navbar() {
 	const { user, role, login, logout } = useUserSession();
-	// const { addOrUpdateCartMutation } = useCart();
 
 	return (
 		<nav>

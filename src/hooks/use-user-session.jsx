@@ -42,7 +42,7 @@ export default function useUserSession() {
 				const newRole = authUser.isAdmin ? 'admin' : 'member';
 				setUser(authUser);
 				setRole(newRole);
-				console.log('🍎🍎 this is AuthUser', authUser);
+				// console.log('🍎🍎 this is AuthUser', authUser);
 				console.log('🍏🍏 this is newRole', newRole);
 			} else {
 				setUser(null);

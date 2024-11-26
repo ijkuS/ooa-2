@@ -30,7 +30,7 @@ export function onUserStateChange(callback) {
 	const unsubscribe = onAuthStateChanged(firebaseAuth, async (user) => {
 		const updatedUser = user ? await adminUser(user) : null;
 		callback(updatedUser);
-		console.log(updatedUser, 'this is updatedUser');
+		//console.log(updatedUser, 'this is updatedUser');
 	});
 	return unsubscribe;
 }

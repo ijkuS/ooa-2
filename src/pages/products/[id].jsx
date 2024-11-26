@@ -22,7 +22,7 @@ export async function getServerSideProps(context) {
 
 export default function ProductDetail({ product }) {
 	const { user } = useUserSession();
-	const { addOrUpdateCartMutation } = useCart();
+	const { addOrUpdateCartMutation, cartItems } = useCart();
 	const { images, title, price, category, id, options, description } =
 		product;
 
@@ -51,18 +51,25 @@ export default function ProductDetail({ product }) {
 			options: selected || options[0], // Default to first option if none selected
 			quantity: 1,
 		};
+
 		try {
 			addOrUpdateCartMutation.mutate(
-				{ userId: user.uid, product },
+				{
+					userId: user.uid,
+					product,
+					// cartItems,
+				},
 				{
 					onSuccess: () => {
+						console.log('handleAddtoBag is working well');
+						console.log(cartItems);
 						setSuccess(true);
 						setTimeout(() => setSuccess(null), 3000);
 					},
 				}
 			);
 		} catch (error) {
-			console.error('Error adding or updating cart');
+			console.error('Error on addOrUpdatedCartMutation', error);
 		}
 	};
 	return (

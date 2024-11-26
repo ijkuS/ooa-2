@@ -12,29 +12,40 @@ export default function CartItem({ cartItem, uid }) {
 	const { images, title, price, category, id, quantity, options } = cartItem;
 	const { addOrUpdateCartMutation, removeFromCartMutation } = useCart();
 
-	const handleMinus = () => {
+	const handleMinus = async () => {
 		if (quantity < 2) return; // quantity shouldn't be less than 1
-		addOrUpdateCartMutation.mutate({
-			userId: uid,
-			product: { ...cartItem, quantity: quantity - 1 },
-		});
-
-		// addOrUpdateCart(uid, { ...cartItem, quantity: quantity - 1 });
-		console.log('-1');
+		try {
+			addOrUpdateCartMutation.mutate(
+				{
+					userId: uid,
+					product: { ...cartItem, quantity: quantity - 1 },
+				},
+				{
+					onSuccess: () => {
+						console.log('-1, handleMinus is doing well');
+					},
+				}
+			);
+		} catch (error) {
+			console.error('Error handleMinus', error);
+		}
 	};
 	const handlePlus = async () => {
 		try {
-			addOrUpdateCartMutation.mutate({
-				userId: uid,
-				product: {
-					...cartItem,
-					quantity: quantity + 1,
+			addOrUpdateCartMutation.mutate(
+				{
+					userId: uid,
+					product: {
+						...cartItem,
+						quantity: quantity + 1,
+					},
 				},
-
-				onSuccess: () => {
-					console.log('+1, handlePlus is doing well');
-				},
-			});
+				{
+					onSuccess: () => {
+						console.log('+1, handlePlus is doing well');
+					},
+				}
+			);
 		} catch (error) {
 			console.error('Error handlePlus', error);
 		}
